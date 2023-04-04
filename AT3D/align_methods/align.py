@@ -55,9 +55,9 @@ def IOU(Reframe, GTframe):
     return ratio
 
 
-config = tf.ConfigProto()
-config.gpu_options.allow_growth = True
-config.gpu_options.visible_device_list = "0"
+config = tf.ConfigProto(device_count={'GPU': 0})
+# config.gpu_options.allow_growth = True
+# config.gpu_options.visible_device_list = "0"
 with tf.Graph().as_default():
     sess = tf.Session(config=config)
     with sess.as_default():
