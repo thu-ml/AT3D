@@ -1,0 +1,8 @@
+**/__pycache__/**
+**/ckpts/**
+**/results/**
+**.png
+**.mat
+align_*.npz
+embedding_*.npz
+detection_*.txt
