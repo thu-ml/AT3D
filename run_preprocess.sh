@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 python ./preprocess/get_bfm_mat/get5landmarks.py
 cp ./preprocess/get_bfm_mat/get_bfm_coeff.py ./preprocess/get_bfm_mat/Deep3DFaceRecon_pytorch/get_bfm_coeff.py
