@@ -101,7 +101,15 @@ bash ./run_attacks_AT3DML.sh
 # run 3D attack with perturbation on 3DMM coefficients
 bash ./run_attacks_AT3DP.sh
 ```
-You can see the attack results under `/data/demo/results`. In addition, you can see the result `obj` file if you perform a 3D attack.
+You can see the attack results under `/data/demo/results`. The directory of attack results will be:
+
+```
+/data/demo/results/[attack method]/[patch shape]/[attacker's name]/[victim's name]/
+```
+
+Under the directory, you will find two pictures generated during the attack process. One is the adversarial example shown in a two-dimension way, the other is a concatenated picture of the attacker, victim and the adversarial example. If you don't want the concatenated picture, just modify the corresponding bash script and set the `--visualize` argument to be `False`.
+
+ In addition, you can see the result `obj` file if you perform a 3D attack. You can open it with a 3D viewer, such as [MeshLab](https://github.com/cnr-isti-vclab/meshlab).
 
 ## Contact
 If you have any questions, please contact the paper authors.
