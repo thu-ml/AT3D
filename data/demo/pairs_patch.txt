@@ -1,5 +1,5 @@
-./data/demo/origin/584/final_584.png ./data/demo/origin/584/align_final_584.npz ./data/demo/origin/584/584.mat ./data/demo/origin/54/54.mat ./data/demo/origin/54/embedding_final_54.npz
-./data/demo/origin/300/final_300.png ./data/demo/origin/300/align_final_300.npz ./data/demo/origin/300/300.mat ./data/demo/origin/638/638.mat ./data/demo/origin/638/embedding_final_638.npz
-./data/demo/origin/689/final_689.png ./data/demo/origin/689/align_final_689.npz ./data/demo/origin/689/689.mat ./data/demo/origin/144/144.mat ./data/demo/origin/144/embedding_final_144.npz
-./data/demo/origin/737/final_737.png ./data/demo/origin/737/align_final_737.npz ./data/demo/origin/737/737.mat ./data/demo/origin/954/954.mat ./data/demo/origin/954/embedding_final_954.npz
-./data/demo/origin/295/final_295.png ./data/demo/origin/295/align_final_295.npz ./data/demo/origin/295/295.mat ./data/demo/origin/651/651.mat ./data/demo/origin/651/embedding_final_651.npz
+./data/demo/origin/584/final_584.png ./data/demo/origin/54/final_54.png ./data/demo/origin/584/align_final_584.npz ./data/demo/origin/584/584.mat ./data/demo/origin/54/54.mat ./data/demo/origin/54/embedding_final_54.npz
+./data/demo/origin/300/final_300.png ./data/demo/origin/638/final_638.png ./data/demo/origin/300/align_final_300.npz ./data/demo/origin/300/300.mat ./data/demo/origin/638/638.mat ./data/demo/origin/638/embedding_final_638.npz
+./data/demo/origin/689/final_689.png ./data/demo/origin/144/final_144.png ./data/demo/origin/689/align_final_689.npz ./data/demo/origin/689/689.mat ./data/demo/origin/144/144.mat ./data/demo/origin/144/embedding_final_144.npz
+./data/demo/origin/737/final_737.png ./data/demo/origin/954/final_954.png ./data/demo/origin/737/align_final_737.npz ./data/demo/origin/737/737.mat ./data/demo/origin/954/954.mat ./data/demo/origin/954/embedding_final_954.npz
+./data/demo/origin/295/final_295.png ./data/demo/origin/651/final_651.png ./data/demo/origin/295/align_final_295.npz ./data/demo/origin/295/295.mat ./data/demo/origin/651/651.mat ./data/demo/origin/651/embedding_final_651.npz

@@ -39,7 +39,11 @@ def main():
         subdir = os.path.join(workdir, "data", dataset, "origin", subdir)
         if os.path.isdir(subdir):
             for file in os.listdir(subdir):
-                if file.endswith(".jpg") or file.endswith(".png") and (not file.startswith("final_")):
+                if (
+                    file.endswith(".jpg")
+                    or file.endswith(".png")
+                    and (not file.startswith("final_"))
+                ):
                     files.append(os.path.join(subdir, file))
     print(files)
 

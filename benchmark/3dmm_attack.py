@@ -7,7 +7,7 @@ import argparse
 import torch
 from scipy.io import loadmat
 from tqdm import tqdm
-from utils import save_loss, save_res_imgs, save_res_objs
+from utils import save_loss, save_res_imgs, save_res_objs, save_all_imgs
 
 from AT3D.attacks.attacks import attack_implementation
 from AT3D.dataset import LOADER_DICT
@@ -99,6 +99,7 @@ def main():
     else:
         for (
             xs,
+            ys,
             ys_feat,
             xs_align_mats,
             ids,
@@ -144,6 +145,8 @@ def main():
 
             if args.save_mesh:
                 save_res_objs(paths, model, hyparam_str, mask=args.mask, **new_kwargs)
+            if args.visualize:
+                save_all_imgs(paths, xs, ys, res_imgs, hyparam_str)
 
 
 if __name__ == "__main__":
@@ -225,6 +228,12 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--save_mesh", help="save mesh or not", default=False, type=bool
+    )
+    parser.add_argument(
+        "--visualize",
+        help="save the attacker's and victim's picture together with the result",
+        default=False,
+        type=bool,
     )
 
     args = parser.parse_args()

@@ -24,7 +24,9 @@ def get_data_path(root="examples"):
         subdir = os.path.join(root, subdir)
         if os.path.isdir(subdir):
             for file in os.listdir(subdir):
-                if (file.endswith(".jpg") or file.endswith(".png")) and (not file.startswith('final_')):
+                if (file.endswith(".jpg") or file.endswith(".png")) and (
+                    not file.startswith("final_")
+                ):
                     outpath.append(subdir)
                     im_path.append(os.path.join(subdir, file))
                     lm_path.append(
@@ -87,7 +89,9 @@ def main(rank, opt, input_folder):
             input_img_numpy / 255.0, dtype=torch.float32
         ).permute(0, 3, 1, 2)
         input_img_numpy = tensor2im(inputput_vis[0])
-        save_image(input_img_numpy, os.path.join(outpath[i], 'final_'+img_name + ".png"))
+        save_image(
+            input_img_numpy, os.path.join(outpath[i], "final_" + img_name + ".png")
+        )
 
         model.save_coeff(
             os.path.join(outpath[i], img_name + ".mat")

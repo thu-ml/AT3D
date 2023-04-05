@@ -17,6 +17,25 @@ def save_res_imgs(paths, res_imgs, hyparam):
         imsave(os.path.join(path, hyparam + ".png"), img_np)
 
 
+def save_all_imgs(paths, xs, ys, res_imgs, hyparam):
+    for i, path in enumerate(paths):
+        if not os.path.exists(path):
+            os.makedirs(path)
+        x = np.clip(
+            xs[i, :, :, :].cpu().detach().numpy().transpose(1, 2, 0), 0, 255
+        ).astype(np.uint8)
+        y = np.clip(
+            ys[i, :, :, :].cpu().detach().numpy().transpose(1, 2, 0), 0, 255
+        ).astype(np.uint8)
+        img = np.clip(
+            res_imgs[i, :, :, :].cpu().detach().numpy().transpose(1, 2, 0), 0, 255
+        ).astype(np.uint8)
+        imsave(
+            os.path.join(path, "vis_" + hyparam + ".png"),
+            np.concatenate((x, y, img), axis=1),
+        )
+
+
 def save_res_objs(paths, model, hyparam, mask, **kwargs):
     ids = kwargs["id"].detach()
     exps = kwargs["exp"].detach()

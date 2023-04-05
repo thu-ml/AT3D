@@ -8,7 +8,13 @@ from tqdm import tqdm
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
-from utils import get_mesh, save_loss, save_res_imgs, save_res_objs_explict
+from utils import (
+    get_mesh,
+    save_loss,
+    save_res_imgs,
+    save_res_objs_explict,
+    save_all_imgs,
+)
 
 from AT3D.attacks.attacks import attack_implementation
 from AT3D.dataset import LOADER_DICT
@@ -123,9 +129,12 @@ def main():
                     save_res_objs_explict(
                         paths, model, hyparam_str, mask=args.mask, **new_kwargs
                     )
+                if args.visualize:
+                    save_all_imgs(paths, xs, ys, res_imgs, hyparam_str)
         else:
             for (
                 xs,
+                ys,
                 ys_feat,
                 xs_align_mats,
                 ids,
@@ -190,6 +199,8 @@ def main():
                     save_res_objs_explict(
                         paths, model, hyparam_str, mask=args.mask, **new_kwargs
                     )
+                if args.visualize:
+                    save_all_imgs(paths, xs, ys, res_imgs, hyparam_str)
 
 
 if __name__ == "__main__":
@@ -265,6 +276,12 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--save_mesh", help="save mesh or not", default=False, type=bool
+    )
+    parser.add_argument(
+        "--visualize",
+        help="save the attacker's and victim's picture together with the result",
+        default=False,
+        type=bool,
     )
 
     args = parser.parse_args()

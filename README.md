@@ -81,17 +81,11 @@ If the shell script is successfully executed, you will have following outputs, w
 ### Attack configuration
 To implement an attack, you should add attack pairs in configuration files, *e.g.* `pairs_patch.txt`. Configuration files for different attack methods may have different formats.
 
-#### 2D attack
 ```
 [the path of the attacker's 224x224 picture output by reconstruction model] [the path of the victim's 224x224 picture output by reconstruction model] [the path of the align matrix of the attacker] [the path of the 3dmm coefficients of the attacker] [the path of the 3dmm coefficients of the victim] [the path of npz file which contains the embeddings (output by different face recognition models) of the victim]
 ```
-To see how to write a configuration file for 2D attack, you can refer to `/data/demo/pairs_patch_2d.txt`.
+To see how to write a configuration file for an attack, you can refer to `/data/demo/pairs_patch.txt`.
 
-#### 3D attack
-```
-[the path of the attacker's 224x224 picture output by reconstruction model] [the path of the align matrix of the attacker] [the path of the 3dmm coefficients of the attacker] [the path of the 3dmm coefficients of the victim] [the path of npz file which contains the embeddings (output by different face recognition models) of the victim]
-```
-To see how to write a configuration file for 3D attack, you can refer to `/data/demo/pairs_patch.txt`.
 
 ## Attack
 

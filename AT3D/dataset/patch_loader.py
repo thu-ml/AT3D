@@ -69,7 +69,12 @@ class PatchLoader2D(BaseLoader):
                     path_ys_3dmm_mats,
                     path_ys_feats,
                 ) = pair
-                attacker = path_xs.strip().split(os.path.sep)[-1].replace(".png", "").split('_')[-1]
+                attacker = (
+                    path_xs.strip()
+                    .split(os.path.sep)[-1]
+                    .replace(".png", "")
+                    .split("_")[-1]
+                )
                 victim = (
                     path_ys_3dmm_mats.strip().split(os.path.sep)[-1].replace(".mat", "")
                 )
@@ -176,7 +181,7 @@ class PatchLoader(BaseLoader):
         with open(path_pairs, "r") as f:
             for line in f.readlines():
                 sample = line.strip().split()
-                assert len(sample) == 5
+                assert len(sample) == 6
                 sample = [os.path.join(workdir, file) for file in sample]
                 self.pairs.append(sample)
 
@@ -192,6 +197,7 @@ class PatchLoader(BaseLoader):
             self.pos += self.batch_size
             (
                 xs,
+                ys,
                 ys_feat,
                 xs_aligned_mats,
                 ys_coeff_id,
@@ -200,7 +206,7 @@ class PatchLoader(BaseLoader):
                 ys_coeff_angle,
                 ys_coeff_trans,
                 ys_coeff_gamma,
-            ) = ([], [], [], [], [], [], [], [], [])
+            ) = ([], [], [], [], [], [], [], [], [], [])
             # target_paths is the target path of saving images
             target_paths = []
 
@@ -208,12 +214,18 @@ class PatchLoader(BaseLoader):
                 # x means attacker, y means victim
                 (
                     path_xs,
+                    path_ys,
                     path_xs_align_mats,
                     path_xs_3dmm_mats,
                     path_ys_3dmm_mats,
                     path_ys_feats,
                 ) = pair
-                attacker = path_xs.strip().split(os.path.sep)[-1].replace(".png", "").split('_')[-1]
+                attacker = (
+                    path_xs.strip()
+                    .split(os.path.sep)[-1]
+                    .replace(".png", "")
+                    .split("_")[-1]
+                )
                 victim = (
                     path_ys_3dmm_mats.strip().split(os.path.sep)[-1].replace(".mat", "")
                 )
@@ -222,6 +234,11 @@ class PatchLoader(BaseLoader):
 
                 x = (
                     torch.Tensor(imread(path_xs)[np.newaxis, :, :, :])
+                    .permute(0, 3, 1, 2)
+                    .to(self.device)
+                )
+                y = (
+                    torch.Tensor(imread(path_ys)[np.newaxis, :, :, :])
                     .permute(0, 3, 1, 2)
                     .to(self.device)
                 )
@@ -247,6 +264,7 @@ class PatchLoader(BaseLoader):
                 y_coeff_dict["trans"] = x_coeff_dict["trans"]
 
                 xs.append(x)
+                ys.append(y)
                 ys_feat.append(y_feat)
                 xs_aligned_mats.append(x_M)
                 ys_coeff_id.append(y_coeff_dict["id"])
@@ -258,6 +276,7 @@ class PatchLoader(BaseLoader):
                 target_paths.append(target_path)
 
             xs = torch.cat(xs)
+            ys = torch.cat(ys)
             ys_feat = torch.cat(ys_feat)
             xs_aligned_mats = torch.cat(xs_aligned_mats)
             ys_coeff_id = torch.cat(ys_coeff_id)
@@ -270,6 +289,7 @@ class PatchLoader(BaseLoader):
             # xs: 224x224, ys: 112x112, ys_feat: mean ys feat of 112x112, xs' aligned matrices: Ms
             return (
                 xs,
+                ys,
                 ys_feat,
                 xs_aligned_mats,
                 ys_coeff_id,

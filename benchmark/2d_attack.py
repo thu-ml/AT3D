@@ -14,7 +14,7 @@ from AT3D.dataset import LOADER_DICT
 from AT3D.modules import Pipeline
 from AT3D.networks.get_model import getmodel
 from AT3D.options.options import Options
-from benchmark.utils import save_res_imgs
+from benchmark.utils import save_res_imgs, save_all_imgs
 
 
 def make_hyparam_str():
@@ -84,6 +84,8 @@ def main():
             args.eot,
         )
         save_res_imgs(paths, res_imgs, hyparam_str)
+        if args.visualize:
+            save_all_imgs(paths, xs, ys, res_imgs, hyparam_str)
 
 
 if __name__ == "__main__":
@@ -158,6 +160,12 @@ if __name__ == "__main__":
         ],
     )
     parser.add_argument("--eot", help="eot operation times", default=0, type=int)
+    parser.add_argument(
+        "--visualize",
+        help="save the attacker's and victim's picture together with the result",
+        default=False,
+        type=bool,
+    )
 
     args = parser.parse_args()
 
