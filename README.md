@@ -6,7 +6,7 @@
 
 
 <p align="center"> 
-<img src="data/introduction.jpg">
+<img src="data/introduction.png">
 </p>
 <p align="center">Demonstration of physical black-box attacks for unlocking one prevailing mobile phone. <p align="center">
 
