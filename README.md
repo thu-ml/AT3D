@@ -1,14 +1,23 @@
-# Towards Effective Adversarial Textured 3D Meshes on Physical Face Recognition 
+# Towards Effective Adversarial Textured 3D Meshes on Physical Face Recognition
 
 [Towards Effective Adversarial Textured 3D Meshes on Physical Face Recognition](https://arxiv.org/abs/2303.15818) (CVPR 2023, <font color="red"> Highlight </font>)
 
-[Xiao Yang](https://ml.cs.tsinghua.edu.cn/~xiaoyang/), Chang Liu, Longlong Xu, [Yikai Wang](https://yikaiw.github.io/), [Yinpeng Dong](http://ml.cs.tsinghua.edu.cn/~yinpeng/), [Ning Chen](https://scholar.google.com/citations?user=cSxeVz0AAAAJ&hl=en), [Hang Su](http://www.suhangss.me/), and [Jun Zhu](http://ml.cs.tsinghua.edu.cn/~jun/index.shtml).
+[Xiao Yang](https://ml.cs.tsinghua.edu.cn/~xiaoyang/), [Chang Liu](https://github.com/elenacliu), [Longlong Xu](https://github.com/xll2001), [Yikai Wang](https://yikaiw.github.io/), [Yinpeng Dong](http://ml.cs.tsinghua.edu.cn/~yinpeng/), [Ning Chen](https://scholar.google.com/citations?user=cSxeVz0AAAAJ&hl=en), [Hang Su](http://www.suhangss.me/), and [Jun Zhu](http://ml.cs.tsinghua.edu.cn/~jun/index.shtml).
 
 
-<p align="center"> 
+<p align="center">
 <img src="data/introduction.png" alt="bounding box" width="640px">
 </p>
 <p align="center">Demonstration of physical black-box attacks for unlocking one prevailing mobile phone. <p align="center">
+
+<p align="center">
+<img src="data/visualize.png" alt="bounding box" width="640px">
+</p>
+<p align="center">Demonstration of digital black-box attacks. <p align="center">
+<p align="center">
+<img src="data/444_930.gif" alt="bounding box" width="300px">
+</p>
+<p align="center">Demonstration of the output 3D patch. <p align="center">
 
 ## Getting Started
 
@@ -66,7 +75,7 @@ Before using this code for the attack, you need to set up the environment for da
         └── demo
             ├── origin
             └── results
-    
+
     ```
 
 ### Environment
@@ -134,8 +143,10 @@ If you find our work useful to your research, please consider citing:
 }
 ```
 
-The face images in `/data/demo/origin` are from the public [LFW](http://vis-www.cs.umass.edu/lfw/) dataset released by UMass.
+The face images in `/data/demo/origin` are from the public [CelebA-HQ](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) dataset released by MMLab, CUHK.
 
 ## Acknowledgements
-Here are some great resources we benefit:  
+Here are some great resources we benefit:
 - [Deep3DFaceRecon_pytorch](https://github.com/sicxu/Deep3DFaceRecon_pytorch) for representing 3d faces
+- [Nvdiffrast – Modular Primitives for High-Performance Differentiable Rendering](https://github.com/NVlabs/nvdiffrast) for differentiable rendering
+- [Face Robustness Benchmark (RobFR)](https://github.com/ShawnXYang/Face-Robustness-Benchmark) for basic adversarial attack implementation

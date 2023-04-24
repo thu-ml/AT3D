@@ -7,7 +7,6 @@ from AT3D.networks.ArcFace import ArcFace
 from AT3D.networks.CosFace import CosFace
 from AT3D.networks.FaceNet import FaceNet
 from AT3D.networks.IR import IR
-from AT3D.networks.MobileFace import MobileFace
 from AT3D.networks.Mobilenet import Mobilenet
 from AT3D.networks.MobilenetV2 import MobilenetV2
 from AT3D.networks.ResNet import resnet
@@ -24,9 +23,7 @@ def getmodel(face_model, **kwargs):
     a model class
     """
     img_shape = (112, 112)
-    if face_model == "MobileFace":
-        model = MobileFace(**kwargs)
-    elif face_model == "Mobilenet":
+    if face_model == "Mobilenet":
         model = Mobilenet(**kwargs)
     elif face_model == "Mobilenet-stride1":
         model = Mobilenet(stride=1, **kwargs)
