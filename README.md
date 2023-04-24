@@ -90,11 +90,11 @@ bash ./run_preprocess.sh
 
 If the shell script is successfully executed, you will have following outputs, which will be the required inputs for the attack.
 
-- The coordinates of five landmarks detected for the original picture, *e.g.* `/data/demo/origin/54/detection_54.txt`
-- The BFM reconstruction coefficients for every identity in pictures under `/data/demo/origin`, *e.g.* `/data/demo/origin/54/54.mat`
-- 224x224 picture output by the reconstruction model. *e.g.* `/data/demo/origin/54/final_54.png`
-- The align matrices for the 224x224 picture output by reconstruction model, *e.g.* `/data/demo/origin/54/align_final_54.npz` (if you apply the matrices to the picture, it will scale to 112x112 (or 112x96).)
-- The embeddings/features output by different face recognition models (now we only save the results of `ArcFace`, `CosFace` and `ResNet`), *e.g.* `/data/demo/origin/54/embedding_final_54.npz`
+- The coordinates of five landmarks detected for the original picture, *e.g.* `/data/demo/origin/444/detection_444.txt`
+- The BFM reconstruction coefficients for every identity in pictures under `/data/demo/origin`, *e.g.* `/data/demo/origin/444/444.mat`
+- 224x224 picture output by the reconstruction model. *e.g.* `/data/demo/origin/444/final_444.png`
+- The align matrices for the 224x224 picture output by reconstruction model, *e.g.* `/data/demo/origin/444/align_final_444.npz` (if you apply the matrices to the picture, it will scale to 112x112 (or 112x96).)
+- The embeddings/features output by different face recognition models (now we only save the results of `ArcFace`, `CosFace` and `ResNet`), *e.g.* `/data/demo/origin/444/embedding_final_444.npz`
 
 
 ### Attack Configuration
