@@ -28,7 +28,7 @@ def ndc_projection(x=0.1, n=1.0, f=50.0):
 
 
 class MeshRenderer(nn.Module):
-    def __init__(self, rasterize_fov, znear=0.1, zfar=10, rasterize_size=224):
+    def __init__(self, rasterize_fov, znear=0.1, zfar=10, rasterize_size=224, use_opengl=False):
         super(MeshRenderer, self).__init__()
 
         x = np.tan(np.deg2rad(rasterize_fov * 0.5)) * znear
@@ -36,7 +36,8 @@ class MeshRenderer(nn.Module):
             torch.diag(torch.tensor([1.0, -1, -1, 1]))
         )
         self.rasterize_size = rasterize_size
-        self.glctx = None
+        self.use_opengl = use_opengl
+        self.ctx = None
 
     def forward(self, vertex, tri, feat=None):
         """
@@ -60,11 +61,16 @@ class MeshRenderer(nn.Module):
             vertex[..., 1] = -vertex[..., 1]
 
         vertex_ndc = vertex @ ndc_proj.t()
-        if self.glctx is None:
+        if self.ctx is None:
             # dr.set_log_level(0)
-            print("try to create glctx on", device)
-            self.glctx = dr.RasterizeGLContext(device=device)
-            print("create glctx on device cuda:%d" % device.index)
+            print("try to create ctx on", device)
+            if self.use_opengl:
+                self.ctx = dr.RasterizeGLContext(device=device)
+                ctx_str = "opengl"
+            else:
+                self.ctx = dr.RasterizeCudaContext(device=device)
+                ctx_str = "cuda"
+            print("create %s ctx on device cuda:%d"%(ctx_str, device.index))
 
         ranges = None
         if isinstance(tri, List) or len(tri.shape) == 3:
@@ -80,7 +86,7 @@ class MeshRenderer(nn.Module):
         # for range_mode vetex: [B*N, 4], tri: [B*M, 3], for instance_mode vetex: [B, N, 4], tri: [M, 3]
         tri = tri.type(torch.int32).contiguous()
         rast_out, _ = dr.rasterize(
-            self.glctx,
+            self.ctx,
             vertex_ndc.contiguous(),
             tri,
             resolution=[rsize, rsize],
