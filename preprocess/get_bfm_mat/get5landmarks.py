@@ -3,14 +3,14 @@ from multiprocessing.dummy import Pool
 
 import cv2
 from mtcnn import MTCNN
+from tqdm import tqdm
 
 
 # https://github.com/ipazc/mtcnn
-def single_mtcnn(path):
+def single_mtcnn(path, detector):
     if not os.path.exists(path):
         return
     img = cv2.cvtColor(cv2.imread(path), cv2.COLOR_BGR2RGB)
-    detector = MTCNN()
     dic = detector.detect_faces(img)
     print(path, flush=True)
 
@@ -28,7 +28,7 @@ def single_mtcnn(path):
 
 
 def main():
-    pool = Pool(processes=16)
+    # pool = Pool(processes=16)
     dataset = "demo"
     workdir = os.path.dirname(
         os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -46,9 +46,11 @@ def main():
                 ):
                     files.append(os.path.join(subdir, file))
     print(files)
-
-    pool.map(single_mtcnn, files)
-    pool.close()
+    detector = MTCNN()
+    for file in tqdm(files):
+        single_mtcnn(file, detector)
+    # pool.map(single_mtcnn, files)
+    # pool.close()
 
 
 if __name__ == "__main__":
